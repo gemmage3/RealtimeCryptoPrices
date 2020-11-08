@@ -1,9 +1,14 @@
-from django.http import HttpResponse
+import requests
+from django.shortcuts import render
 
 from .models import Crypto
 
 
 def index(request):
-    crypto_list = Crypto.objects.order.all
-    output = ', '.join([q.name for q in crypto_list])
-    return HttpResponse(output)
+    cryptos = Crypto.objects.all()
+    print(cryptos)
+
+    context = {}
+
+    return render(request, 'index.html', context)
+
